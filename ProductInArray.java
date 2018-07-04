@@ -12,30 +12,25 @@ public class ProductInArray {
       int[] input = {1, 2, 3, 4, 5};
 
       ProductInArray pa = new ProductInArray();
-      ArrayList output = pa.getProductOutput(input);
-      System.out.println(output);
+      int[] output = pa.getProductOutput(input);
+
+      for (int i=0; i<output.length; i++) {
+        System.out.println(output[i]);
+      }
   }
 
-  public ArrayList getProductOutput(int[] inputArray) {
-    ArrayList outputArray = new ArrayList();
+  public int[] getProductOutput(int[] inputArray) {
+    int[] outputArray = new int[inputArray.length];
 
-    int frontProduct = 1;
+    int totalProduct = 1;
     for (int i=0; i<inputArray.length; i++) {
-
-      int value = (int)inputArray[i];
-
-      int remainderProuct = 1;
-      for (int j=i+1; j<inputArray.length; j++) {
-        remainderProuct *= (int)inputArray[j];
-      }
-      // System.out.println(i);
-      // System.out.println("frontProduct-"+frontProduct);
-      // System.out.println("remainderProuct-"+remainderProuct);
-
-      int product = frontProduct * remainderProuct;
-      outputArray.add(i, product);
-      frontProduct *= value;
+      totalProduct *= inputArray[i];
     }
+
+    for (int j=0; j<inputArray.length; j++) {
+      outputArray[j] = totalProduct / inputArray[j];
+    }
+
     return outputArray;
   }
 
